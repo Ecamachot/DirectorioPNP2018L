@@ -1,0 +1,99 @@
+﻿@model IEnumerable<DirectorioPNP2018.Models.UnidadPNPs>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutDirectorio.cshtml";
+    if (Session["idUsuarios"] == null)
+    {
+        Response.Redirect("~/Login/Index");
+    }
+}
+
+
+<div class="container body-content">
+    <br>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <div class="pull-left">
+                <h3> Unidades PNP </h3>
+            </div>
+            <div class="pull-right">
+                <h4 class="text-right">
+                    <span class="glyphicon glyphicon-user"></span>
+                    @Session["apPaterno"] @Session["apMaterno"] @Session["nombres"]
+                    <p><a href="@Url.Action("LogOut","Login")">Cerrar Sesión</a></p>
+
+                </h4>
+                </div>
+                                
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-md-12">
+
+                                    <p>
+                                        @Html.ActionLink("Crear Unidad", "Create")
+                                    </p>
+                                    <div class="table-responsive">
+                                        <table class="table">
+                                            <tr>
+                                                <th>
+                                                    Nombre Oficial
+                                                </th>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.correo)
+                                                </th>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.calle)
+                                                </th>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.distrito)
+                                                </th>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.provincia)
+                                                </th>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.departamento)
+                                                </th>
+                                                <th></th>
+                                            </tr>
+
+                                            @foreach (var item in Model)
+                                            {
+                                                <tr>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.nombreOficial)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.correo)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.calle)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.distrito)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.provincia)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.departamento)
+                                                    </td>
+                                                    <td>
+                                                        @Html.ActionLink("Editar", "Edit", new { id = item.idUnidadPNP }) |
+                                                        @*@Html.ActionLink("Detalles", "Details", new { id = item.idUnidadPNP }) |*@
+                                                        @Html.ActionLink("Eliminar", "Delete", new { id = item.idUnidadPNP })
+                                                    </td>
+                                                </tr>
+                                            }
+                                        </table>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+

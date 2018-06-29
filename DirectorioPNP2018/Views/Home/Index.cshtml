@@ -1,0 +1,72 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutDirectorio.cshtml";
+    if (Session["idUsuarios"] == null)
+    {
+        Response.Redirect("~/Login/Index");
+    }
+}
+
+
+<div class="container body-content">
+    <br>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <div class="pull-left">
+                <h3> Buscar Unidad</h3>
+            </div>
+            <div class="pull-right">
+                <h4 class="text-right hidden-xs">
+                    <span class="glyphicon glyphicon-user"></span>
+                     @Session["apPaterno"] @Session["apMaterno"] @Session["nombres"]
+                    <p><a href="@Url.Action("LogOut","Login")">Cerrar Sesión</a></p>
+                    
+                </h4>
+
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-10 col-md-offset-1">
+                    <p>
+                        <br>
+                    </p>
+                    <p>
+                        <br>
+                    </p>
+
+                    <form action="#" method="post" role="form">
+                        <div class="form-group has-success">
+                            <select class="form-control selectFrm" name="departamento">
+                                <option value="La Libertad">La Libertad</option>
+                                <option value="Ancash">Ancash</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group has-success">
+                            <input class="form-control text-box single-line inputFrmIndex" name="nombreComun" type="text" placeholder="Ingrese nombre de Unidad" autofocus required>
+                        </div>
+
+                        <center>
+                            <input type="submit" value="Buscar" class="btn btn-success btn-form" name="btn_search">
+                        </center>
+                    </form>
+                   
+                    
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-10 col-md-offset-1" align="justify">
+                    <hr>
+                    <p><b>@ViewBag.Message </p>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>

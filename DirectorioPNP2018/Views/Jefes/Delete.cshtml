@@ -1,0 +1,113 @@
+﻿@model DirectorioPNP2018.Models.Jefes
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_layoutDirectorio.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Jefes</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.cip)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cip)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.grado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.grado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.apPaterno)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.apPaterno)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.apMaterno)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.apMaterno)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.nombres)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nombres)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.celularP)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.celularP)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dateCreate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dateCreate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dateUpdate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dateUpdate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.isDeleted)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.isDeleted)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.userModified)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.userModified)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.userCreated)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.userCreated)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

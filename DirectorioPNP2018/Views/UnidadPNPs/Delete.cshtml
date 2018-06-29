@@ -1,0 +1,153 @@
+﻿@model DirectorioPNP2018.Models.UnidadPNPs
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_layoutDirectorio.cshtml";
+}
+<div class="container body-content">
+    <br>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <div class="pull-left">
+                <h3> Unidades PNP</h3>
+            </div>
+            <div class="pull-right">
+                <h3 class="text-right"><img src="~/Img/lock3.png" width="24" height="30"></h3>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-12">
+
+
+                    <h3>Esta seguro que desea eliminar a <b> @Html.DisplayFor(model => model.nombreOficial)</b></h3>
+                    <div>
+                  
+                        <dl class="dl-horizontal">
+                            <dt>
+                                @Html.DisplayNameFor(model => model.nombreComun)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.nombreComun)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.nombreOficial)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.nombreOficial)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.correo)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.correo)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.calle)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.calle)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.distrito)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.distrito)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.provincia)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.provincia)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.departamento)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.departamento)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.dateCreate)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.dateCreate)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.dateUpdate)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.dateUpdate)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.isDeleted)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.isDeleted)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.userModified)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.userModified)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.userCreated)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.userCreated)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.Jefes.cip)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.Jefes.cip)
+                            </dd>
+
+                        </dl>
+
+                        @using (Html.BeginForm())
+                        {
+                            @Html.AntiForgeryToken()
+
+                            <div class="form-actions no-color">
+                                <input type="submit" value="Eliminar" class="btn btn-success" /> |
+                                @Html.ActionLink("Regresar", "Index")
+                            </div>
+                        }
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+</div>
+
+

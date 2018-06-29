@@ -1,0 +1,118 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DirectorioPNPModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Jefes">
+    <Key>
+      <PropertyRef Name="idJefe" />
+    </Key>
+    <Property Name="idJefe" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="cip" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="grado" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="apPaterno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="apMaterno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="nombres" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="celularP" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="dateCreate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="dateUpdate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="isDeleted" Type="Boolean" Nullable="false" />
+    <Property Name="userModified" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="userCreated" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="UnidadPNPs" Relationship="Self.FK_Jefe" FromRole="Jefes" ToRole="UnidadPNPs" />
+  </EntityType>
+  <EntityType Name="Telefonos">
+    <Key>
+      <PropertyRef Name="idTelefono" />
+    </Key>
+    <Property Name="idTelefono" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="numero" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="tipo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="operadora" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="titular" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="dateCreate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="dateUpdate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="isDeleted" Type="Boolean" Nullable="false" />
+    <Property Name="userModified" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="userCreated" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="idUnidadPNP" Type="Int32" />
+    <NavigationProperty Name="UnidadPNPs" Relationship="Self.FK_idUnidadPNP" FromRole="Telefonos" ToRole="UnidadPNPs" />
+  </EntityType>
+  <EntityType Name="UnidadPNPs">
+    <Key>
+      <PropertyRef Name="idUnidadPNP" />
+    </Key>
+    <Property Name="idUnidadPNP" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombreComun" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="nombreOficial" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="correo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="calle" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="distrito" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="provincia" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="departamento" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="dateCreate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="dateUpdate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="isDeleted" Type="Boolean" Nullable="false" />
+    <Property Name="userModified" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="userCreated" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="idJefe" Type="Int32" />
+    <NavigationProperty Name="Jefes" Relationship="Self.FK_Jefe" FromRole="UnidadPNPs" ToRole="Jefes" />
+    <NavigationProperty Name="Telefonos" Relationship="Self.FK_idUnidadPNP" FromRole="UnidadPNPs" ToRole="Telefonos" />
+  </EntityType>
+  <EntityType Name="Usuarios">
+    <Key>
+      <PropertyRef Name="idUsuarios" />
+    </Key>
+    <Property Name="idUsuarios" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="username" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="pass" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="grado" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="apPaterno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="apMaterno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="nombres" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="celularP" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="dateCreate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="dateUpdate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="isDeleted" Type="Boolean" Nullable="false" />
+    <Property Name="userModified" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="userCreated" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="idPerfil" Type="Int32" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Jefe">
+    <End Role="Jefes" Type="Self.Jefes" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="UnidadPNPs" Type="Self.UnidadPNPs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Jefes">
+        <PropertyRef Name="idJefe" />
+      </Principal>
+      <Dependent Role="UnidadPNPs">
+        <PropertyRef Name="idJefe" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_idUnidadPNP">
+    <End Role="UnidadPNPs" Type="Self.UnidadPNPs" Multiplicity="0..1" />
+    <End Role="Telefonos" Type="Self.Telefonos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UnidadPNPs">
+        <PropertyRef Name="idUnidadPNP" />
+      </Principal>
+      <Dependent Role="Telefonos">
+        <PropertyRef Name="idUnidadPNP" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DirectorioPNPEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Jefes" EntityType="Self.Jefes" />
+    <EntitySet Name="Telefonos" EntityType="Self.Telefonos" />
+    <EntitySet Name="UnidadPNPs" EntityType="Self.UnidadPNPs" />
+    <EntitySet Name="Usuarios" EntityType="Self.Usuarios" />
+    <AssociationSet Name="FK_Jefe" Association="Self.FK_Jefe">
+      <End Role="Jefes" EntitySet="Jefes" />
+      <End Role="UnidadPNPs" EntitySet="UnidadPNPs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_idUnidadPNP" Association="Self.FK_idUnidadPNP">
+      <End Role="UnidadPNPs" EntitySet="UnidadPNPs" />
+      <End Role="Telefonos" EntitySet="Telefonos" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

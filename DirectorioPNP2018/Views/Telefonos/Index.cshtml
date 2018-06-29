@@ -1,0 +1,123 @@
+﻿@model IEnumerable<DirectorioPNP2018.Models.Telefonos>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_layoutDirectorio.cshtml";
+    if (Session["idUsuarios"] == null)
+    {
+        Response.Redirect("~/Login/Index");
+    }
+}
+
+<div class="container body-content">
+    <br>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <div class="pull-left">
+                <h3> Telefonos</h3>
+            </div>
+            <div class="pull-right  hidden-xs">
+                <h4 class="text-right">
+                    <span class="glyphicon glyphicon-user"></span>
+                    @Session["apPaterno"] @Session["apMaterno"] @Session["nombres"]
+                    <p><a href="@Url.Action("LogOut","Login")">Cerrar Sesión</a></p>
+
+                </h4>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-12">
+
+                    <p>
+                        @Html.ActionLink("Crear nuevo", "Create")
+                    </p>
+                    <div class="table-responsive">
+                          <table class="table">
+                                <tr>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.numero)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.tipo)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.operadora)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.titular)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.dateCreate)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.dateUpdate)
+                                    </th>
+                                    @*<th>
+                                @Html.DisplayNameFor(model => model.isDeleted)
+                            </th>*@
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.userModified)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.userCreated)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.UnidadPNPs.idUnidadPNP)
+                                    </th>
+                                    <th></th>
+                                </tr>
+
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.numero)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.tipo)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.operadora)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.titular)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.dateCreate)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.dateUpdate)
+                                        </td>
+                                        @*<td>
+                                    @Html.DisplayFor(modelItem => item.isDeleted)
+                                </td>*@
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.userModified)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.userCreated)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.UnidadPNPs.idUnidadPNP)
+                                        </td>
+                                        <td>
+                                            @Html.ActionLink("Editar", "Edit", new { id = item.idTelefono }) |
+                                            @*@Html.ActionLink("Detalles", "Details", new { id = item.idTelefono }) |*@
+                                            @Html.ActionLink("Eliminar", "Delete", new { id = item.idTelefono })
+                                        </td>
+                                    </tr>
+                                }
+
+                            </table>
+                    </div>
+
+                </div>
+        </div>
+
+    </div>
+</div>
+</div>
+
+

@@ -1,0 +1,92 @@
+﻿@charset "utf-8";
+body {
+	padding-top: 50px;
+}
+/* cambiar el color de fondo a la barra */
+nav.navbar {
+	background-color: #669966;
+}
+
+.navbar .nav > li > a {
+	color: white;
+}
+.navbar .nav > li > a:hover {
+	color: darkblue;
+	
+}
+
+.panel-default > .panel-heading {
+	color: #333;
+	background-image: url("../img/fondo_menu.png") !important;
+	background-color: #dcdada;
+	border-color: #ddd;
+}
+h3 {
+	font-family: 'Raleway', sans-serif;
+}
+
+.inputFrmIndex[type=text] {
+	font-size: 17px;
+	height: 40px;
+	
+}
+
+.selectFrm{
+	font-size: 17px;
+	height: 40px;
+	
+}
+
+.btn-form {
+	
+	background-color: #669966;
+	border-color: lightgray;
+	padding: 7px 90px;
+	margin: 20px;
+}
+
+.btn-formA {
+	
+	background-color: #669966;
+	border-color: lightgray;
+	padding: 7px 60px;
+	margin: 20px;
+}
+
+
+/* quitar subrayado a href*/
+
+a.sin:link{
+	text-decoration:none;
+	color:black;
+}
+
+/* Para la tabla*/
+
+/*table{
+	font-size: 15px;
+}
+
+table th {
+	height: 50px;
+}
+td {
+	height: 50px;
+	text-align:  center;
+	
+}
+
+.table > tbody > tr > td {
+	vertical-align: middle;
+}
+.titulo_tabla {
+	text-align: center;
+}
+
+#cortarPalabra {
+    word-break: break-all;
+	/*margin:0;*/
+
+
+}*/
+

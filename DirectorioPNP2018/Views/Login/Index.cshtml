@@ -1,0 +1,81 @@
+﻿@model DirectorioPNP2018.Models.Usuarios
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+    <link href="~/Content/bootstrap.css" rel="stylesheet">
+    <link href="~/Content/login.css" rel="stylesheet">
+
+</head>
+<body class="login2background">
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="~/Script/jquery-1.11.3.min.js"></script>
+
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="~/Script/bootstrap.js"></script>
+
+    <div class="container">
+        <div class="col-lg-6 col-md-6 col-sm-8  loginbox">
+            <div id="login-div">
+                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-6">
+                    <img src="~/Img/logo_directorio.png" alt="Logo" class="logo">
+                </div>
+
+                @using (Html.BeginForm("Autherize", "Login", FormMethod.Post))
+                {
+                    <table>
+                        <tr>
+                            <td></td>
+                            
+                        </tr>
+                        <tr>
+                            <td>
+                                Usuario
+                            </td>
+                            <td>
+                                <input class="text-box single-line" id="username" name="username" type="text" value="" />
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>@Html.ValidationMessageFor(model => model.username)</td>
+                        </tr>
+
+                        <tr>
+                            <td>Password</td>
+                            <td><input class="text-box single-line" id="pass" name="pass" type="password" value="" /></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            @*<td>@Html.ValidationMessageFor(model => model.Password)</td>*@
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <label class="field-validation-error">@Html.DisplayFor(model => model.LoginErrorMessage)</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>
+                                <input type="submit" name="name" value="Ingresar" />
+                                <input type="reset" name="name" value="Borrar" />
+                            </td>
+                        </tr>
+                    </table>
+                }
+
+                </div>
+            </div>
+        </div>
+
+</body>
+
+</html>

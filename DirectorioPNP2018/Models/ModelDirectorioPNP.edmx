@@ -1,0 +1,343 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="DirectorioPNPModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Jefes">
+          <Key>
+            <PropertyRef Name="idJefe" />
+          </Key>
+          <Property Name="idJefe" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cip" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="grado" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="apPaterno" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="apMaterno" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="nombres" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="celularP" Type="varchar" MaxLength="15" />
+          <Property Name="dateCreate" Type="date" Nullable="false" />
+          <Property Name="dateUpdate" Type="date" Nullable="false" />
+          <Property Name="isDeleted" Type="bit" Nullable="false" />
+          <Property Name="userModified" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="userCreated" Type="varchar" MaxLength="8" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Telefonos">
+          <Key>
+            <PropertyRef Name="idTelefono" />
+          </Key>
+          <Property Name="idTelefono" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="numero" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="tipo" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="operadora" Type="varchar" MaxLength="50" />
+          <Property Name="titular" Type="varchar" MaxLength="50" />
+          <Property Name="dateCreate" Type="date" Nullable="false" />
+          <Property Name="dateUpdate" Type="date" Nullable="false" />
+          <Property Name="isDeleted" Type="bit" Nullable="false" />
+          <Property Name="userModified" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="userCreated" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="idUnidadPNP" Type="int" />
+        </EntityType>
+        <EntityType Name="UnidadPNPs">
+          <Key>
+            <PropertyRef Name="idUnidadPNP" />
+          </Key>
+          <Property Name="idUnidadPNP" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombreComun" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="nombreOficial" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="correo" Type="varchar" MaxLength="50" />
+          <Property Name="calle" Type="varchar" MaxLength="100" />
+          <Property Name="distrito" Type="varchar" MaxLength="50" />
+          <Property Name="provincia" Type="varchar" MaxLength="50" />
+          <Property Name="departamento" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="dateCreate" Type="date" Nullable="false" />
+          <Property Name="dateUpdate" Type="date" Nullable="false" />
+          <Property Name="isDeleted" Type="bit" Nullable="false" />
+          <Property Name="userModified" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="userCreated" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="idJefe" Type="int" />
+        </EntityType>
+        <EntityType Name="Usuarios">
+          <Key>
+            <PropertyRef Name="idUsuarios" />
+          </Key>
+          <Property Name="idUsuarios" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="username" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="pass" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="grado" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="apPaterno" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="apMaterno" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="nombres" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="celularP" Type="varchar" MaxLength="15" />
+          <Property Name="dateCreate" Type="date" Nullable="false" />
+          <Property Name="dateUpdate" Type="date" Nullable="false" />
+          <Property Name="isDeleted" Type="bit" Nullable="false" />
+          <Property Name="userModified" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="userCreated" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="idPerfil" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_idUnidadPNP">
+          <End Role="UnidadPNPs" Type="Self.UnidadPNPs" Multiplicity="0..1" />
+          <End Role="Telefonos" Type="Self.Telefonos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UnidadPNPs">
+              <PropertyRef Name="idUnidadPNP" />
+            </Principal>
+            <Dependent Role="Telefonos">
+              <PropertyRef Name="idUnidadPNP" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Jefe">
+          <End Role="Jefes" Type="Self.Jefes" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="UnidadPNPs" Type="Self.UnidadPNPs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Jefes">
+              <PropertyRef Name="idJefe" />
+            </Principal>
+            <Dependent Role="UnidadPNPs">
+              <PropertyRef Name="idJefe" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DirectorioPNPModelStoreContainer">
+          <EntitySet Name="Jefes" EntityType="Self.Jefes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Telefonos" EntityType="Self.Telefonos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UnidadPNPs" EntityType="Self.UnidadPNPs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usuarios" EntityType="Self.Usuarios" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_idUnidadPNP" Association="Self.FK_idUnidadPNP">
+            <End Role="UnidadPNPs" EntitySet="UnidadPNPs" />
+            <End Role="Telefonos" EntitySet="Telefonos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Jefe" Association="Self.FK_Jefe">
+            <End Role="Jefes" EntitySet="Jefes" />
+            <End Role="UnidadPNPs" EntitySet="UnidadPNPs" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DirectorioPNPModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Jefes">
+          <Key>
+            <PropertyRef Name="idJefe" />
+          </Key>
+          <Property Name="idJefe" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cip" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="grado" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="apPaterno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="apMaterno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nombres" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="celularP" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="dateCreate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="dateUpdate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="isDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="userModified" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="userCreated" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="UnidadPNPs" Relationship="Self.FK_Jefe" FromRole="Jefes" ToRole="UnidadPNPs" />
+        </EntityType>
+        <EntityType Name="Telefonos">
+          <Key>
+            <PropertyRef Name="idTelefono" />
+          </Key>
+          <Property Name="idTelefono" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="numero" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="tipo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="operadora" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="titular" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="dateCreate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="dateUpdate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="isDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="userModified" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="userCreated" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="idUnidadPNP" Type="Int32" />
+          <NavigationProperty Name="UnidadPNPs" Relationship="Self.FK_idUnidadPNP" FromRole="Telefonos" ToRole="UnidadPNPs" />
+        </EntityType>
+        <EntityType Name="UnidadPNPs">
+          <Key>
+            <PropertyRef Name="idUnidadPNP" />
+          </Key>
+          <Property Name="idUnidadPNP" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombreComun" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nombreOficial" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="correo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="calle" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="distrito" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="provincia" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="departamento" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="dateCreate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="dateUpdate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="isDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="userModified" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="userCreated" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="idJefe" Type="Int32" />
+          <NavigationProperty Name="Jefes" Relationship="Self.FK_Jefe" FromRole="UnidadPNPs" ToRole="Jefes" />
+          <NavigationProperty Name="Telefonos" Relationship="Self.FK_idUnidadPNP" FromRole="UnidadPNPs" ToRole="Telefonos" />
+        </EntityType>
+        <EntityType Name="Usuarios">
+          <Key>
+            <PropertyRef Name="idUsuarios" />
+          </Key>
+          <Property Name="idUsuarios" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="username" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="pass" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="grado" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="apPaterno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="apMaterno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nombres" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="celularP" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="dateCreate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="dateUpdate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="isDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="userModified" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="userCreated" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="idPerfil" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Jefe">
+          <End Role="Jefes" Type="Self.Jefes" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="UnidadPNPs" Type="Self.UnidadPNPs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Jefes">
+              <PropertyRef Name="idJefe" />
+            </Principal>
+            <Dependent Role="UnidadPNPs">
+              <PropertyRef Name="idJefe" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_idUnidadPNP">
+          <End Role="UnidadPNPs" Type="Self.UnidadPNPs" Multiplicity="0..1" />
+          <End Role="Telefonos" Type="Self.Telefonos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UnidadPNPs">
+              <PropertyRef Name="idUnidadPNP" />
+            </Principal>
+            <Dependent Role="Telefonos">
+              <PropertyRef Name="idUnidadPNP" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DirectorioPNPEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Jefes" EntityType="Self.Jefes" />
+          <EntitySet Name="Telefonos" EntityType="Self.Telefonos" />
+          <EntitySet Name="UnidadPNPs" EntityType="Self.UnidadPNPs" />
+          <EntitySet Name="Usuarios" EntityType="Self.Usuarios" />
+          <AssociationSet Name="FK_Jefe" Association="Self.FK_Jefe">
+            <End Role="Jefes" EntitySet="Jefes" />
+            <End Role="UnidadPNPs" EntitySet="UnidadPNPs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_idUnidadPNP" Association="Self.FK_idUnidadPNP">
+            <End Role="UnidadPNPs" EntitySet="UnidadPNPs" />
+            <End Role="Telefonos" EntitySet="Telefonos" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DirectorioPNPModelStoreContainer" CdmEntityContainer="DirectorioPNPEntities">
+          <EntitySetMapping Name="Jefes">
+            <EntityTypeMapping TypeName="DirectorioPNPModel.Jefes">
+              <MappingFragment StoreEntitySet="Jefes">
+                <ScalarProperty Name="idJefe" ColumnName="idJefe" />
+                <ScalarProperty Name="cip" ColumnName="cip" />
+                <ScalarProperty Name="grado" ColumnName="grado" />
+                <ScalarProperty Name="apPaterno" ColumnName="apPaterno" />
+                <ScalarProperty Name="apMaterno" ColumnName="apMaterno" />
+                <ScalarProperty Name="nombres" ColumnName="nombres" />
+                <ScalarProperty Name="celularP" ColumnName="celularP" />
+                <ScalarProperty Name="dateCreate" ColumnName="dateCreate" />
+                <ScalarProperty Name="dateUpdate" ColumnName="dateUpdate" />
+                <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
+                <ScalarProperty Name="userModified" ColumnName="userModified" />
+                <ScalarProperty Name="userCreated" ColumnName="userCreated" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Telefonos">
+            <EntityTypeMapping TypeName="DirectorioPNPModel.Telefonos">
+              <MappingFragment StoreEntitySet="Telefonos">
+                <ScalarProperty Name="idTelefono" ColumnName="idTelefono" />
+                <ScalarProperty Name="numero" ColumnName="numero" />
+                <ScalarProperty Name="tipo" ColumnName="tipo" />
+                <ScalarProperty Name="operadora" ColumnName="operadora" />
+                <ScalarProperty Name="titular" ColumnName="titular" />
+                <ScalarProperty Name="dateCreate" ColumnName="dateCreate" />
+                <ScalarProperty Name="dateUpdate" ColumnName="dateUpdate" />
+                <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
+                <ScalarProperty Name="userModified" ColumnName="userModified" />
+                <ScalarProperty Name="userCreated" ColumnName="userCreated" />
+                <ScalarProperty Name="idUnidadPNP" ColumnName="idUnidadPNP" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UnidadPNPs">
+            <EntityTypeMapping TypeName="DirectorioPNPModel.UnidadPNPs">
+              <MappingFragment StoreEntitySet="UnidadPNPs">
+                <ScalarProperty Name="idUnidadPNP" ColumnName="idUnidadPNP" />
+                <ScalarProperty Name="nombreComun" ColumnName="nombreComun" />
+                <ScalarProperty Name="nombreOficial" ColumnName="nombreOficial" />
+                <ScalarProperty Name="correo" ColumnName="correo" />
+                <ScalarProperty Name="calle" ColumnName="calle" />
+                <ScalarProperty Name="distrito" ColumnName="distrito" />
+                <ScalarProperty Name="provincia" ColumnName="provincia" />
+                <ScalarProperty Name="departamento" ColumnName="departamento" />
+                <ScalarProperty Name="dateCreate" ColumnName="dateCreate" />
+                <ScalarProperty Name="dateUpdate" ColumnName="dateUpdate" />
+                <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
+                <ScalarProperty Name="userModified" ColumnName="userModified" />
+                <ScalarProperty Name="userCreated" ColumnName="userCreated" />
+                <ScalarProperty Name="idJefe" ColumnName="idJefe" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usuarios">
+            <EntityTypeMapping TypeName="DirectorioPNPModel.Usuarios">
+              <MappingFragment StoreEntitySet="Usuarios">
+                <ScalarProperty Name="idUsuarios" ColumnName="idUsuarios" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="pass" ColumnName="pass" />
+                <ScalarProperty Name="grado" ColumnName="grado" />
+                <ScalarProperty Name="apPaterno" ColumnName="apPaterno" />
+                <ScalarProperty Name="apMaterno" ColumnName="apMaterno" />
+                <ScalarProperty Name="nombres" ColumnName="nombres" />
+                <ScalarProperty Name="celularP" ColumnName="celularP" />
+                <ScalarProperty Name="dateCreate" ColumnName="dateCreate" />
+                <ScalarProperty Name="dateUpdate" ColumnName="dateUpdate" />
+                <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
+                <ScalarProperty Name="userModified" ColumnName="userModified" />
+                <ScalarProperty Name="userCreated" ColumnName="userCreated" />
+                <ScalarProperty Name="idPerfil" ColumnName="idPerfil" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

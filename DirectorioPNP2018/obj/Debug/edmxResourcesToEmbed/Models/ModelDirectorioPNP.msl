@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DirectorioPNPModelStoreContainer" CdmEntityContainer="DirectorioPNPEntities">
+    <EntitySetMapping Name="Jefes">
+      <EntityTypeMapping TypeName="DirectorioPNPModel.Jefes">
+        <MappingFragment StoreEntitySet="Jefes">
+          <ScalarProperty Name="idJefe" ColumnName="idJefe" />
+          <ScalarProperty Name="cip" ColumnName="cip" />
+          <ScalarProperty Name="grado" ColumnName="grado" />
+          <ScalarProperty Name="apPaterno" ColumnName="apPaterno" />
+          <ScalarProperty Name="apMaterno" ColumnName="apMaterno" />
+          <ScalarProperty Name="nombres" ColumnName="nombres" />
+          <ScalarProperty Name="celularP" ColumnName="celularP" />
+          <ScalarProperty Name="dateCreate" ColumnName="dateCreate" />
+          <ScalarProperty Name="dateUpdate" ColumnName="dateUpdate" />
+          <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
+          <ScalarProperty Name="userModified" ColumnName="userModified" />
+          <ScalarProperty Name="userCreated" ColumnName="userCreated" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Telefonos">
+      <EntityTypeMapping TypeName="DirectorioPNPModel.Telefonos">
+        <MappingFragment StoreEntitySet="Telefonos">
+          <ScalarProperty Name="idTelefono" ColumnName="idTelefono" />
+          <ScalarProperty Name="numero" ColumnName="numero" />
+          <ScalarProperty Name="tipo" ColumnName="tipo" />
+          <ScalarProperty Name="operadora" ColumnName="operadora" />
+          <ScalarProperty Name="titular" ColumnName="titular" />
+          <ScalarProperty Name="dateCreate" ColumnName="dateCreate" />
+          <ScalarProperty Name="dateUpdate" ColumnName="dateUpdate" />
+          <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
+          <ScalarProperty Name="userModified" ColumnName="userModified" />
+          <ScalarProperty Name="userCreated" ColumnName="userCreated" />
+          <ScalarProperty Name="idUnidadPNP" ColumnName="idUnidadPNP" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UnidadPNPs">
+      <EntityTypeMapping TypeName="DirectorioPNPModel.UnidadPNPs">
+        <MappingFragment StoreEntitySet="UnidadPNPs">
+          <ScalarProperty Name="idUnidadPNP" ColumnName="idUnidadPNP" />
+          <ScalarProperty Name="nombreComun" ColumnName="nombreComun" />
+          <ScalarProperty Name="nombreOficial" ColumnName="nombreOficial" />
+          <ScalarProperty Name="correo" ColumnName="correo" />
+          <ScalarProperty Name="calle" ColumnName="calle" />
+          <ScalarProperty Name="distrito" ColumnName="distrito" />
+          <ScalarProperty Name="provincia" ColumnName="provincia" />
+          <ScalarProperty Name="departamento" ColumnName="departamento" />
+          <ScalarProperty Name="dateCreate" ColumnName="dateCreate" />
+          <ScalarProperty Name="dateUpdate" ColumnName="dateUpdate" />
+          <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
+          <ScalarProperty Name="userModified" ColumnName="userModified" />
+          <ScalarProperty Name="userCreated" ColumnName="userCreated" />
+          <ScalarProperty Name="idJefe" ColumnName="idJefe" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Usuarios">
+      <EntityTypeMapping TypeName="DirectorioPNPModel.Usuarios">
+        <MappingFragment StoreEntitySet="Usuarios">
+          <ScalarProperty Name="idUsuarios" ColumnName="idUsuarios" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="pass" ColumnName="pass" />
+          <ScalarProperty Name="grado" ColumnName="grado" />
+          <ScalarProperty Name="apPaterno" ColumnName="apPaterno" />
+          <ScalarProperty Name="apMaterno" ColumnName="apMaterno" />
+          <ScalarProperty Name="nombres" ColumnName="nombres" />
+          <ScalarProperty Name="celularP" ColumnName="celularP" />
+          <ScalarProperty Name="dateCreate" ColumnName="dateCreate" />
+          <ScalarProperty Name="dateUpdate" ColumnName="dateUpdate" />
+          <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
+          <ScalarProperty Name="userModified" ColumnName="userModified" />
+          <ScalarProperty Name="userCreated" ColumnName="userCreated" />
+          <ScalarProperty Name="idPerfil" ColumnName="idPerfil" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
